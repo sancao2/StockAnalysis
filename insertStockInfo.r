@@ -46,14 +46,14 @@ dat
 for(i in 2:length(stockCodes[,1]))
 {
   #stockName <- iconv(stockCodes[2,2],"GBK","UTF-8")
-  insert_sql <- paste("insert into TABLE_CHINASTOCKS (CODE, YAHOO_NAME) values('",
+  insertSQL <- paste("insert into TABLE_CHINASTOCKS (CODE, YAHOO_NAME) values('",
                       as.character(stockCodes[i,1]), #code
                       "\',\'", #SQL varchar's sep
                       paste(as.character(stockCodes[i,1]), ".sz", sep=""), #yahoo_name
                       "')",
                       sep="")
-  #insert_sql
-  dbSendQuery(con,insert_sql)  
+  #insertSQL
+  dbSendQuery(con,insertSQL)  
 }
 res=dbSendQuery(con,"select * from TABLE_CHINASTOCKS")
 dat=fetch(res)
@@ -81,7 +81,7 @@ for(i in 253:length(stockCodes[,1])){
   #stock[2]
   for(j in 1:length(stock)){
 #  j=1
-  insert_sql <- paste("insert into TABLE_STOCK_INFO (CODE, DATE, ADJCLOSE) values('",
+  insertSQL <- paste("insert into TABLE_STOCK_INFO (CODE, DATE, ADJCLOSE) values('",
                         as.character(stockCodes[i,1]), #code
                         "\',\'", #SQL varchar's sep
                         index(stock)[j], #date
@@ -89,13 +89,13 @@ for(i in 253:length(stockCodes[,1])){
                         stock[j], #adjclose
                         "')",
                         sep="")
-    insert_sql  
-    dbSendQuery(con,insert_sql)
+    insertSQL  
+    dbSendQuery(con,insertSQL)
    }  
 }
 
 
-insert_sql
+insertSQL
 
 #dbClearResult(dbListResults(con)[[1]])
 dbDisconnect(con) 
