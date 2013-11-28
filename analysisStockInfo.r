@@ -31,8 +31,11 @@ Value.at.Risk <- function(x,p=0.05,w=100000) {
   VaR
 }
 
-for(i in 1:length(stockCode[,'CODE'])){
+i
+for(i in 1539:length(stockCode[,'CODE'])){
   #i <- 1
+  if (i == 604 | i == 758 | i == 1505 | i == 1539)
+    next
   querySQL <- paste("SELECT DATE, ADJCLOSE FROM TABLE_STOCK_INFO WHERE CODE = '",
                     stockCode[i,'CODE']
                     ,"'",
